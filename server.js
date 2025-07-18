@@ -2,6 +2,9 @@
 const express = require('express');
 const app = express();
 
+
+
+
 const RESTAURANT = {
   name: 'The Green Byte Bistro',
   isOpen: true,
@@ -51,10 +54,16 @@ const RESTAURANT = {
   ]
 }
 
-
-
-app.get('/',(req,res) => {
-    res.send('Hello there!');
+app.get('/', (req, res) => {
+  res.locals.restaurant = RESTAURANT;
+  res.render('home.ejs');
 })
 
-app.listen(3000)
+app.get('/menu', (req, res) => {
+  res.locals.menu = RESTAURANT.menu;
+  res.render('menu.ejs')
+})
+
+app.listen(3000, () => {
+  
+})
