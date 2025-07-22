@@ -2,18 +2,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= category %> Menu</title>
+  <title>Menu</title>
 </head>
 <body>
-    <%- include('./partials/nav') %>
-    <h1><%= category %> Menu</h1>
-    <% menu.forEach((item) => { %>
-        
-       <p><%= item.name %></p>
-       <p>$<%= item.price %></p>
-       <p>Rating <%= item.rating %>/5</p>
-       <p><%= item.details %></p>
-       
+  <%- include('./partials/nav') %>
+   <h1>This is the category page for <%= category %>.</h1>
+
+    <% items.forEach((item) => { %>
+      <p>Name: <%= item.name %></p>
+      <p>$<%= item.price %></p>
+      <p>Rating <%= item.rating %>/5</p>
+      <p><%= item.details %></p>
     <% }) %>
+
 </body>
 </html>

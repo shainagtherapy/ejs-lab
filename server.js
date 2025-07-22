@@ -55,24 +55,36 @@ const RESTAURANT = {
 }
 
 app.get('/', (req, res) => {
-  res.locals.restaurant = RESTAURANT;
-  res.render('home.ejs');
+  res.render('home.ejs', { restaurant: RESTAURANT });
 })
 
 app.get('/menu', (req, res) => {
   res.locals.menu = RESTAURANT.menu;
-  res.render('menu.ejs')
+  res.render('menu.ejs', { menu: RESTAURANT.menu })
 })
 
 app.get('/menu/:category', (req, res) => {
-  res.locals.category = RESTAURANT.category;
-  res.render('category.ejs')
+  const foodCategory = req.params.category;
+  console.log(foodCategory)
+  let menuItems = RESTAURANT.menu.filter((menuItem) => {
+    return menuItem.category === foodCategory;
+  })
+  console.log(menuItems)
+
+  // console.log(RESTAURANT.menu[4].category)
+  res.render('category.ejs', {
+    category: foodCategory,
+    items: menuItems,
+  });
+
+  // take in text from address bar for category'
+  // loop through the menu to see which category matches address bar
+  // send the matching menu items into category.ejs view
+
+  // res.locals.category = RESTAURANT.menu[1].category;
+  // res.render('menu/:category.ejs')
 })
 
-
-
-
-
 app.listen(3000, () => {
-  
+  console.log("I am listening at port 3000")
 })
